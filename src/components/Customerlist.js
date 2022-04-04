@@ -3,21 +3,21 @@ import ReactTable from "react-table";
 import "react-table/react-table.css";
 
 export default function Traininglist() {
-  const [trainings, setTrainings] = useState([]);
+  const [customers, setCustomers] = useState([])
 
   useEffect(() => fetchData, []);
 
   const fetchData = () => {
-    fetch("https://customerrest.herokuapp.com/api/trainings")
+    fetch("https://customerrest.herokuapp.com/api/customerss")
       .then((response) => response.json())
-      .then((data) => setTrainings(data.content))
+      .then((data) => setCustomers(data.content))
       .then((data) => console.log(data.content)); // testing the
   };
 
   const columns = [
     {
-      Header: "Activity",
-      accessor: "activity",
+      Header: {lname: "Lastname", fname:"Firstname"},
+      accessor: {lname:"lastname", fname:"firstname"},
     },
     {
       Header: "Duration",
@@ -31,7 +31,7 @@ export default function Traininglist() {
 
   return (
   <div>
-      <ReactTable filterable={true} data ={trainings} columns= {columns}/>
+      <ReactTable data ={customers} columns= {columns}/>
   </div>
   );
 }
