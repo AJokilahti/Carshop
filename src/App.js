@@ -43,8 +43,8 @@ function App() {
           </Toolbar>
         </AppBar>
       </Box>
-      <BrowserRouter>
-        <Link to="/">Training</Link>
+      <BrowserRouter >
+        <Link style={{marginLeft:467}}to="/">Training</Link>
         {"  "}
         <Link to="/customer">Customers</Link>
         {"  "}
