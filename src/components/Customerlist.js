@@ -16,7 +16,7 @@ export default function Traininglist() {
 
   const columns = [
     {
-      Header: {lname: "Lastname", fname:"Firstname"},
+      Header: "Name",
       accessor: {lname:"lastname", fname:"firstname"},
     },
     {
