@@ -11,6 +11,7 @@ export default function Traininglist(){
         fetch('https://customerrest.herokuapp.com/api/trainings')
         .then(response => response.json())
         .then(data => setTrainings(data.content))
+        .then(data => console.log(data.content)) // testing the
     }
 
 
