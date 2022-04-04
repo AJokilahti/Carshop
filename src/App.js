@@ -21,7 +21,7 @@ function App() {
   return (
     <div>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static">
+        <AppBar style={{display: "flex"}} position="static">
           <Toolbar>
             <IconButton
               size="large"
@@ -35,7 +35,7 @@ function App() {
               {open && <NavLinks />}
               </nav>
             </IconButton>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            <Typography variant="h6" component="div" sx={{mx: 41, flexGrow: 1, alignContent: "flex-end"}}>
               Welcome to Personal Trainer
             </Typography>
 
