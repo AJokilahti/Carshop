@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./App.css";
+import classes from "./App.css";
 import Traininglist from "./components/Traininglist.js";
 import Customerlist from "./components/Customerlist.js";
 import NavLinks from "./components/NavLinks.js";
@@ -30,8 +30,10 @@ function App() {
               aria-label="menu"
               sx={{ mr: 2 }}
             >
+              <nav className={classes.App}>
               <MenuIcon onClick={() => setOpen(!open)} />
               {open && <NavLinks />}
+              </nav>
             </IconButton>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               Welcome to Personal Trainer
