@@ -5,33 +5,32 @@ import "react-table/react-table.css";
 export default function Traininglist() {
   const [customers, setCustomers] = useState([])
 
-  useEffect(() => fetchData, []);
+  useEffect(() => fetchData(), []);
 
   const fetchData = () => {
-    fetch("https://customerrest.herokuapp.com/api/customerss")
+    fetch("https://customerrest.herokuapp.com/api/customers")
       .then((response) => response.json())
       .then((data) => setCustomers(data.content))
-      .then((data) => console.log(data.content)); // testing the
   };
 
   const columns = [
     {
-      Header: "Name",
-      accessor: {lname:"lastname", fname:"firstname"},
+      Header: "Lastname",
+      accessor: "lastname",
     },
     {
-      Header: "Duration",
-      accessor: "duration",
-    },
-    {
-        Header: "Date",
-        accessor: "date",
+        Header: "Firstname",
+        accessor: "firstname",
       },
+    {
+      Header: "email",
+      accessor: "email",
+    },
   ];
 
   return (
   <div>
-      <ReactTable data ={customers} columns= {columns}/>
+      <ReactTable filterable={true} data ={customers} columns= {columns}/>
   </div>
   );
 }
