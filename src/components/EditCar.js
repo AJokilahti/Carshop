@@ -1,18 +1,25 @@
-import React, { useState, useEffect } from "react";
+import EditIcon from '@mui/icons-material/Edit';
 import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
+import TextField from "@mui/material/TextField";
+import React, { useState } from "react";
 
-export default function AddCar(props) {
+export default function EditCar(props) {
   const [open, setOpen] = useState(false);
   const [car, setCar] = useState({
       brand: '', model: '', color: '', fuel: '', year: '', price: ''
   });
 
   const handleClickOpen = () => {
+    setCar({brand: props.car.brand, 
+        model: props.car.model, 
+        color: props.car.color, 
+        fuel: props.car.fuel, 
+        year: props.car.year, 
+        price: props.car.price})
     setOpen(true);
   };
 
@@ -24,18 +31,18 @@ export default function AddCar(props) {
     setCar({ ...car, [e.target.name]: e.target.value });
   }
 
-  const addCar = () => {
-      props.saveCar(car);
+  const updateCar = () => {
+      props.updateCar(car, props.car._links.car.href);
       handleClose();
   }
 
   return (
     <div style={{alignItems:"center"}}>
-      <Button style={{margin: 10}} variant="outlined" onClick={handleClickOpen}>
-        Add Car
+      <Button onClick={handleClickOpen}>
+        <EditIcon />
       </Button>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Add a new car</DialogTitle>
+        <DialogTitle>Edit car</DialogTitle>
         <DialogContent>
           <TextField
             autoFocus
@@ -89,7 +96,7 @@ export default function AddCar(props) {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={addCar}>Save</Button>
+          <Button onClick={updateCar}>Save</Button>
         </DialogActions>
       </Dialog>  
     </div>

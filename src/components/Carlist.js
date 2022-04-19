@@ -1,18 +1,14 @@
-import React, { useState, useEffect } from "react";
+import Button from "@material-ui/core/Button";
+import DeleteIcon from '@mui/icons-material/Delete';
+import { red } from "@mui/material/colors";
+import {
+  formatDistance, subDays
+} from "date-fns";
+import React, { useEffect, useState } from "react";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
-import {
-  format,
-  formatDistance,
-  formatRelative,
-  getDate,
-  subDays,
-} from "date-fns";
-import setDate from "date-fns/setDate/index.js";
-import DeleteIcon from '@mui/icons-material/Delete';
-import Button from "@material-ui/core/Button";
-import { red } from "@mui/material/colors";
 import AddCar from "./AddCar.js";
+import EditCar from "./EditCar.js";
 
 formatDistance(subDays(new Date(), 3), new Date(), { addSuffix: true });
 
@@ -44,6 +40,18 @@ export default function Traininglist() {
     .then(res => fetchData())
     .catch(err=>console.error(err))
   }
+
+  const updateCar = (car, link) => {
+    fetch(link, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(car)
+    })
+    .then(res => fetchData())
+    .catch(err=>console.log(err))
+  }
   
   const columns = [
     {
@@ -69,6 +77,12 @@ export default function Traininglist() {
     {
       Header: "Price",
       accessor: "price",
+    },
+    {
+      sortable: false,
+      filterable: false,
+      width: 100,
+      Cell: row => <EditCar updateCar={updateCar} car={row.original}/>
     },
     {
       accessor: '_links.self.href',
