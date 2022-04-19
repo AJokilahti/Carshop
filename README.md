@@ -1,1 +1,1 @@
-# Basic CRUD for listing your workouts.
+# Basic CRUD for an imaginery carshop made with ReactJS.
