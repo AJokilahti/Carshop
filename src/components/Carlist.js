@@ -13,29 +13,25 @@ import setDate from "date-fns/setDate/index.js";
 formatDistance(subDays(new Date(), 3), new Date(), { addSuffix: true });
 
 export default function Traininglist() {
-  const [trainings, setTrainings] = useState([]);
+  const [cars, setCars] = useState([]);
 
   useEffect(() => fetchData(), []);
 
   const fetchData = () => {
-    fetch("https://customerrest.herokuapp.com/api/trainings")
+    fetch("https://carrestapi.herokuapp.com/cars")
       .then((response) => response.json())
-      .then((data) => setTrainings(data.content))
+      .then((data) => setCars(data._embedded.cars))
   };
 
   
   const columns = [
     {
-      Header: "Activity",
-      accessor: "activity",
+      Header: "Brand",
+      accessor: "brand",
     },
     {
-      Header: "Duration",
-      accessor: "duration",
-    },
-    {
-      Header: "Date",
-      accessor: "date",
+      Header: "Model",
+      accessor: "model",
     },
     
   ];
@@ -44,7 +40,7 @@ export default function Traininglist() {
     <div>
       <ReactTable
         filterable={true}
-        data={trainings}
+        data={cars}
         columns={columns}
       />
     </div>

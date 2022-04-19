@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import classes from "./App.css";
-import Traininglist from "./components/Traininglist.js";
+import Carlist from "./components/Carlist.js";
 import Customerlist from "./components/Customerlist.js";
 import NavLinks from "./components/NavLinks.js";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
@@ -36,7 +36,7 @@ function App() {
               </nav>
             </IconButton>
             <Typography variant="h6" component="div" sx={{mx: 41, flexGrow: 1, alignContent: "flex-end"}}>
-              Welcome to Personal Trainer
+              Welcome to Carshop
             </Typography>
 
             
@@ -44,13 +44,13 @@ function App() {
         </AppBar>
       </Box>
       <BrowserRouter >
-        <Link style={{marginLeft:467}}to="/">Training</Link>
+        <Link style={{marginLeft:467}}to="/">Cars</Link>
         {"  "}
         <Link to="/customer">Customers</Link>
         {"  "}
 
         <Routes>
-          <Route path="/" element={<Traininglist />} />
+          <Route path="/" element={<Carlist />} />
           <Route path="/customer" element={<Customerlist />} />
         </Routes>
       </BrowserRouter>

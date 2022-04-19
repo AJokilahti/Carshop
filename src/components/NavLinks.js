@@ -6,7 +6,7 @@ const NavLinks = () => {
   return (
     <ul>
       <li>
-        <a href="/">Trainings</a>
+        <a href="/">Cars</a>
       </li>
       <li>
         <a href="/customer">Customers</a>
