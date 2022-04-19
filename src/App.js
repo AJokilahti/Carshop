@@ -21,7 +21,7 @@ function App() {
   return (
     <div>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar style={{display: "flex"}} position="static">
+        <AppBar style={{display: "flex", alignItems: "center"}} position="static">
           <Toolbar>
             <IconButton
               size="large"
