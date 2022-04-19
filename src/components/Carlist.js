@@ -12,6 +12,7 @@ import setDate from "date-fns/setDate/index.js";
 import DeleteIcon from '@mui/icons-material/Delete';
 import Button from "@material-ui/core/Button";
 import { red } from "@mui/material/colors";
+import AddCar from "./AddCar.js";
 
 formatDistance(subDays(new Date(), 3), new Date(), { addSuffix: true });
 
@@ -32,6 +33,17 @@ export default function Traininglist() {
     .catch(err=>console.error(err))
   }
 
+  const saveCar = (car) => {
+    fetch("https://carrestapi.herokuapp.com/cars", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(car)
+    })
+    .then(res => fetchData())
+    .catch(err=>console.error(err))
+  }
   
   const columns = [
     {
@@ -69,7 +81,8 @@ export default function Traininglist() {
   ];
 
   return (
-    <div>
+    <div >
+      <AddCar saveCar={saveCar}/>
       <ReactTable
         filterable={true}
         data={cars}
